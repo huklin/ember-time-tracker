@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    saveNewGoal(goalTitle) {
+    addGoal(goalTitle) {
+
       if(!goalTitle) {
         return;
       }
@@ -13,12 +14,15 @@ export default Ember.Controller.extend({
       });
 
       goal.save();
+      this.set('newGoal', '');
     },
     deleteGoal(id) {
-      console.log('deleting ', id);
         this.store.findRecord('goal', id).then(function(goal){
           goal.destroyRecord();
         });
+    },
+    editTitle(id) {
+      console.log('editing goal');
     }
   }
 });
