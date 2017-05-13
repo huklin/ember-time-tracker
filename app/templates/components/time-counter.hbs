@@ -1,6 +1,7 @@
 <div class="timer">
-  {{milliseconds}}
+  {{format-milliseconds milliseconds}}
 </div>
+
 {{#if isRunning}}
   {{#paper-button raised=true fab=true onClick=(action "pauseCount")}}{{paper-icon "pause" size=30}}{{/paper-button}}
 {{else}}
