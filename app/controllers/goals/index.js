@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
         });
     },
     editTitle(id) {
-      console.log('editing goal');
     }
   }
 });

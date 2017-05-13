@@ -8,5 +8,5 @@
   {{#paper-button raised=true fab=true onClick=(action "startCount")}}{{paper-icon "play-arrow" size=30}}{{/paper-button}}
 {{/if}}
 {{#paper-button raised=true fab=true onClick=(action "restartCount")}}{{paper-icon "autorenew" size=30}}{{/paper-button}}
-{{#paper-button raised=true }}Submit{{/paper-button}}
+{{#paper-button raised=true onClick=(action "submitCount") }}Submit{{/paper-button}}
 {{#link-to "goals"}}Go Back{{/link-to}}
