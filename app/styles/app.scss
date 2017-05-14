@@ -1,1 +1,11 @@
 @import 'ember-paper';
+
+// Define desired color palettes.
+$primary: "teal";
+$accent: "light-green";
+$warn: "pink";
+
+.avatar {
+  height: 125px;
+  width: 125px;
+}

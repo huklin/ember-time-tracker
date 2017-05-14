@@ -16,12 +16,13 @@ export default Ember.Controller.extend({
       goal.save();
       this.set('newGoal', '');
     },
+    updateGoal(goalId) {
+      this.transitionToRoute('goals.detail', goalId);
+    },
     deleteGoal(id) {
         this.store.findRecord('goal', id).then(function(goal){
           goal.destroyRecord();
         });
-    },
-    editTitle(id) {
     }
   }
 });

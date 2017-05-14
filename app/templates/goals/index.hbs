@@ -1,32 +1,62 @@
+{{top-navigation title="My Goals"}}
+
 <div id="goal-page" class="layout-column flex">
-  <h2>My Goals</h2>
 
-  <div class="flex">
-    {{#paper-list}}
-    {{#each model as |item|}}
-      {{#paper-item class="md-3-line"}}
-      <div onclick={{action "editTitle"}} class="md-list-item-text">
-        <h3>{{item.title}}</h3>
-        <h4>{{item.timeSpent}}</h4>
-      </div>
-      {{paper-divider}}
-      <div class="layout-column">
+  <!-- Add New Goal Module -->
+  <div class="layout-row layout-align-center-center">
+    {{#paper-card class="flex-70 flex-gt-sm-50" as |card| }}
+      {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+      <h2>
+        Add a New Goal
+      </h2>
+      {{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
 
-        {{#paper-button}}
-          {{#link-to "goals.detail" item.id}}
+      {{paper-input label="New Goal" value=newGoal onChange=(action (mut newGoal))}}
+      {{#paper-button raised=true onClick=(action "addGoal" newGoal)}}Add{{/paper-button}}
+    {{/paper-card}}
+  </div>
+
+  <!-- Empty Goals Instruction -->
+  {{#unless model.length}}
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}You Currently Have No Goals{{/text.headline}}
+          {{#text.subhead}}(how lame){{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+      {{#card.content}}
+        <p>
+          Please add a new goal by using the form above!
+        </p>
+      {{/card.content}}
+    {{/paper-card}}
+  {{/unless}}
+
+  <!-- Goals List -->
+  {{#each model as |item|}}
+    {{#paper-card as |card|}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}{{item.title}}{{/text.headline}}
+          {{#text.subhead}}
+          <div class="layout-column flex">
+            <h3>Total Time Spent: {{item.timeSpent}}</h3>
+          </div>
+          {{/text.subhead}}
+        {{/title.text}}
+        {{title.media size="md" src="/assets/tedy_bear_128px.png" class="face" alt="bear"}}
+      {{/card.title}}
+      {{#card.actions}}
+        {{#paper-button onClick=(action "updateGoal" item.id)}}
             Level Up!
-          {{/link-to}}
         {{/paper-button}}
-        {{#paper-button onClick=(action "deleteGoal" item.id)}}{{paper-icon "delete"}}{{/paper-button}}
-      </div>
-      {{/paper-item}}
-    {{/each}}
-    {{/paper-list}}
-  </div>
+        {{#paper-button onClick=(action "deleteGoal" item.id)}}Delete{{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+  {{/each}}
 
-  <div class="flex">
-    {{paper-input label="New Goal" value=newGoal onChange=(action (mut newGoal))}}
-    {{#paper-button raised=true onClick=(action "addGoal" newGoal)}}Add{{/paper-button}}
-  </div>
 </div>
 {{outlet}}
