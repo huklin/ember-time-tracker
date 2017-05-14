@@ -12,14 +12,14 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{top-navigation}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(this.$('.top-nav').length, "Non-block verion renders");
 
   // Template block usage:
   this.render(hbs`
     {{#top-navigation}}
-      template block text
+      <span class='inner-test-span'>Test</span>
     {{/top-navigation}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$('.inner-test-span').length, "Block verion renders yield elements");
 });

@@ -1,10 +1,11 @@
-{{#paper-toolbar}}
+{{#paper-toolbar class="top-nav"}}
   {{#paper-toolbar-tools}}
     {{#paper-button iconButton=true}}
       {{paper-icon "menu"}}
     {{/paper-button}}
     <h2>
       {{title}}
+      {{yield}}
     </h2>
     <span class="flex"></span>
     {{#paper-button iconButton=true}}

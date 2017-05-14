@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function formatMilliseconds([ms, ...rest]) {
+export function formatMilliseconds(ms) {
   const s = Math.floor (ms/1000);
   const hour = Math.floor (s/3600);
   const min = Math.floor((s % 3600) / 60);

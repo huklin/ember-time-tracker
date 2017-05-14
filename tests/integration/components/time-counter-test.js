@@ -12,14 +12,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{time-counter}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(this.$('.timer').length, "Non-block verion renders with timer");
 
-  // Template block usage:
-  this.render(hbs`
-    {{#time-counter}}
-      template block text
-    {{/time-counter}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
